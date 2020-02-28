@@ -4,7 +4,7 @@ import { View, StyleSheet, Text } from "react-native";
 const TrackCreateScreen = () => {
   return (
     <View>
-      <Text style={styles.StyleSheet}>TrackCreateScreen</Text>
+      <Text style={styles.TextStyle}>TrackCreateScreen</Text>
     </View>
   );
 };
