@@ -1,55 +1,26 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
-import { Text, Input, Button } from "react-native-elements";
-import Spacer from "../components/Spacer";
+import { NavigationEvents } from "react-navigation";
 import { Context as AuthContext } from "../context/AuthContext";
+import AuthForm from "../components/AuthForm";
+import NavLink from "../components/NavLink";
 
 const SignUpScreen = ({ navigation }) => {
-  const { state, signup } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  console.log(state);
+  const { state, signup, clearErrorMessage } = useContext(AuthContext);
+
   return (
     <View style={styles.viewStyle}>
-      <Spacer>
-        <Text h3 style={{ color: "white" }}>
-          Sign Up for Tracker
-        </Text>
-      </Spacer>
-      <Input
-        label="Email"
-        value={email}
-        onChangeText={setEmail}
-        type="email"
-        autoCapitalize="none"
-        autoCorrect={false}
+      <NavigationEvents onWillBlur={clearErrorMessage} />
+      <AuthForm
+        headerText="Sign Up for Tracker"
+        errorMessage={state.errorMessage}
+        submitButtonText="Sign Up"
+        onSubmit={signup}
       />
-      <Input
-        label="Password"
-        value={password}
-        onChangeText={setPassword}
-        autoCapitalize="none"
-        secureTextEntry={true}
-        autoCorrect={false}
+      <NavLink
+        routeName="SignIn"
+        text="Already have an account? Sign in instead!"
       />
-      {state.errorMessage ? (
-        <Text style={styles.errorStyle}>{state.errorMessage}</Text>
-      ) : null}
-      <Spacer>
-        <Button
-          title="Create Account"
-          raised
-          buttonStyle={{ backgroundColor: "#ffaaa5" }}
-          onPress={() => signup({ email, password })}
-        />
-      </Spacer>
-      <Button
-        title="Already made an account? Tap here to sign in."
-        onPress={() => navigation.navigate("SignIn")}
-        type="clear"
-      >
-        <Text>Already made an account? Click here to sign in.</Text>
-      </Button>
     </View>
   );
 };

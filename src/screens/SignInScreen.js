@@ -1,35 +1,24 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
-import { Text, Input, Button } from "react-native-elements";
-import Spacer from "../components/Spacer";
+import React, { useContext } from "react";
+import { View, StyleSheet, Text } from "react-native";
+import { NavigationEvents } from "react-navigation";
+import AuthForm from "../components/AuthForm";
+import NavLink from "../components/NavLink";
+import { Context } from "../context/AuthContext";
 
 const SignInScreen = ({ navigation }) => {
+  const { state, signin, clearErrorMessage } = useContext(Context);
   return (
     <View style={styles.viewStyle}>
-      <Spacer>
-        <Text h3 style={{ color: "white" }}>
-          Sign In for Tracker
-        </Text>
-      </Spacer>
-      <Input label="Email" autoCapitalize="none" autoCorrect={false} />
-      <Input
-        type="password"
-        label="Password"
-        secureTextEntry={true}
-        autoCapitalize="none"
-        autoCorrect={false}
+      <NavigationEvents onWillBlur={clearErrorMessage} />
+      <AuthForm
+        headerText="Sign In to Your Account"
+        errorMessage={state.errorMessage}
+        onSubmit={signin}
+        submitButtonText="Sign In"
       />
-      <Spacer>
-        <Button
-          title="Sign In"
-          raised
-          buttonStyle={{ backgroundColor: "#ffaaa5" }}
-        />
-      </Spacer>
-      <Button
-        title=" Haven't made an account? Click here to sign up."
-        onPress={() => navigation.navigate("SignUp")}
-        type="clear"
+      <NavLink
+        text="Dont have an account? Sign up instead"
+        routeName="SignUp"
       />
     </View>
   );
