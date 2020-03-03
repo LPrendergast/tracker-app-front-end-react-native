@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
-const TrackDetailScreen = () => {
+const TrackDetailScreen = ({ navigation }) => {
   return (
     <View>
       <Text style={styles.TextStyle}>TrackDetailScreen</Text>
@@ -14,5 +14,13 @@ const styles = StyleSheet.create({
     fontSize: 48
   }
 });
+
+TrackDetailScreen.navigationOptions = () => {
+  return {
+    cardStyle: {
+      backgroundColor: "#a8e6cf"
+    }
+  };
+};
 
 export default TrackDetailScreen;

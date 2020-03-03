@@ -19,6 +19,23 @@ const TrackListScreen = ({ navigation }) => {
   );
 };
 
+TrackListScreen.navigationOptions = () => {
+  return {
+    cardStyle: {
+      backgroundColor: "#a8e6cf"
+    },
+    tabBarOptions: {
+      activeTintColor: "#e91e63",
+      labelStyle: {
+        fontSize: 12
+      },
+      style: {
+        backgroundColor: "blue"
+      }
+    }
+  };
+};
+
 const styles = StyleSheet.create({});
 
 export default TrackListScreen;

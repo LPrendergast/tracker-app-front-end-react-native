@@ -1,11 +1,15 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
+import { Text } from "react-native-elements";
+import { SafeAreaView } from "react-navigation";
+import Map from "../components/Map";
 
-const TrackCreateScreen = () => {
+const TrackCreateScreen = ({ navigation }) => {
   return (
-    <View>
-      <Text style={styles.TextStyle}>TrackCreateScreen</Text>
-    </View>
+    <SafeAreaView forceInset={{ top: "always" }}>
+      <Text h2>Create a track</Text>
+      <Map />
+    </SafeAreaView>
   );
 };
 
@@ -14,5 +18,13 @@ const styles = StyleSheet.create({
     fontSize: 48
   }
 });
+
+TrackCreateScreen.navigationOptions = () => {
+  return {
+    cardStyle: {
+      backgroundColor: "#a8e6cf"
+    }
+  };
+};
 
 export default TrackCreateScreen;
