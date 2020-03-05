@@ -6,10 +6,25 @@ import { requestPermissionsAsync } from "expo-location";
 import Map from "../components/Map";
 
 const TrackCreateScreen = ({ navigation }) => {
+  const [err, setErr] = useState(null);
+
+  const startWatching = async () => {
+    try {
+      await requestPermissionsAsync();
+    } catch (err) {
+      setErr(err);
+    }
+  };
+
+  useEffect(() => {
+    startWatching();
+  }, []);
+
   return (
     <SafeAreaView forceInset={{ top: "always" }}>
       <Text h2>Create a track</Text>
       <Map />
+      {err ? <Text>Please enable location services</Text> : null}
     </SafeAreaView>
   );
 };
