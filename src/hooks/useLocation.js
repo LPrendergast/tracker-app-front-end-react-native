@@ -29,7 +29,7 @@ export default (shouldTrack, callback) => {
     if (shouldTrack) {
       startWatching();
     } else {
-      sub.remove();
+      subscriber.remove();
       setSubscriber(null);
     }
   }, [shouldTrack]);
